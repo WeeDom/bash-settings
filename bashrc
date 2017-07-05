@@ -6,7 +6,7 @@ parse_git_branch() {
 
 }
 set completion-ignore-case on
-export PS1="\u@\[\033[0;94m\]\h \w\[\033[32m\]\$(parse_git_branch)\[\033[00m\] $ "
+export PS1="\u@\[\033[0;94m\]\h \w\[\033[32m\]\$(parse_git_branch)\[\033[00m\]\n$ "
 test -f ~/.git-completion.bash && . $_
 test -f ~/.console/console.rc && . $_
 
@@ -30,3 +30,5 @@ function copy_bash_vim() {
 
 export NVM_DIR="/Users/dominic.pain/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+# Run twolfson/sexy-bash-prompt
+. ~/.bash_prompt
