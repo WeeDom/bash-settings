@@ -20,6 +20,8 @@ alias sshggmr="ssh 89.234.59.147"
 alias sshbq="ssh 134.213.122.126"
 alias sshbq-staging="ssh 134.213.122.125"
 alias go_bz_api="cd ~/PhpstormProjects/bluezone/api/web/modules/custom/bz_api/"
+alias sshproxy="ssh 35.176.59.198"
+alias sshbz="ssh 35.176.88.6"
 function copy_bash_vim() {
 	scp .vim/autoload/* ec2-54-201-21-17.us-west-2.compute.amazonaws.com:/home/dominic.pain/.vim/autoload/
 	scp -r .vim/bundle/* ec2-54-201-21-17.us-west-2.compute.amazonaws.com:/home/dominic.pain/.vim/bundle/
