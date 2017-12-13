@@ -15,7 +15,6 @@ function cdn() {
     cd $(printf "%0.s../" $(seq 1 $1 ));
 }
 
-<<<<<<< HEAD
 function mkcd() {
     mkdir -p -- "$1" &&
       cd -P -- "$1"
