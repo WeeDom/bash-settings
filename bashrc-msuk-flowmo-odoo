@@ -29,13 +29,11 @@ function copy_bash_vim() {
 export NVM_DIR="/Users/dominic.pain/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
-function mkcd {
-  last=$(eval "echo \$$#")
-  if [ ! -n "$last" ]; then
-    echo "Enter a directory name"
-  elif [ -d $last ]; then
-    echo "\`$last' already exists"
-  else
-    mkdir $@ && cd $last
-  fi
+function mkcd() {                                                               
+    mkdir -p -- "$1" &&
+	cd -P -- "$1"
+}
+function add_agent() {
+    eval `ssh-agent`
+    ssh-add
 }
