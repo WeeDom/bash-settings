@@ -1,11 +1,12 @@
 execute pathogen#infect()
 
-set directory=$HOME/.vim/swapfiles//
+set directory=$HOME/.vim/swapfiles/
 
 filetype plugin indent on
 syntax on
 set rnu
 autocmd FileType javascript setlocal shiftwidth=4 expandtab
+autocmd FileType * setlocal shiftwidth=4 expandtab
 autocmd FileType xml setlocal shiftwidth=4 expandtab
 syntax enable           " enable syntax processing
 "set number
