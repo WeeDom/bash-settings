@@ -1,9 +1,6 @@
 [submodule "vim/bundle/bundle/bufexplorer"]
 	path = vim/bundle/bundle/bufexplorer
 	url = git://github.com/vim-scripts/bufexplorer.zip
-[submodule "vim/bundle/bundle/nerdcommenter"]
-	path = vim/bundle/bundle/nerdcommenter
-	url = git://github.com/scrooloose/nerdcommenter.git
 [submodule "vim/bundle/bundle/nerdtree"]
 	path = vim/bundle/bundle/nerdtree
 	url = git://github.com/scrooloose/nerdtree.git
@@ -19,3 +16,6 @@
 [submodule "vim/bundle/YouCompleteMe"]
 	path = vim/bundle/YouCompleteMe
 	url = git@github.com:Valloric/YouCompleteMe.git
+[submodule "vim/bundle/nerdcommenter"]
+	path = vim/bundle/nerdcommenter
+	url = https://github.com/scrooloose/nerdcommenter.git

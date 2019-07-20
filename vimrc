@@ -1,13 +1,13 @@
 execute pathogen#infect()
 
 let g:ycm_server_python_interpreter = '/usr/bin/python2.7'
-set directory=$HOME/.vim/swap//
+set directory=$HOME/.vim/swap/
+
 filetype plugin indent on
 syntax on
 colorscheme evening
-set rnu
-autocmd FileType javascript,js setlocal shiftwidth=4 expandtab
-autocmd FileType xml setlocal shiftwidth=4 expandtab
+set rnu number
+autocmd FileType * setlocal shiftwidth=4 expandtab
 syntax enable           " enable syntax processing
 set number
 set tabstop=4       " number of visual spaces per TAB
