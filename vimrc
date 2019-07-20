@@ -1,7 +1,7 @@
 execute pathogen#infect()
 
 set directory=$HOME/.vim/swapfiles/
-
+let g:ycm_confirm_extra_conf = 0
 filetype plugin indent on
 syntax on
 set rnu
@@ -33,7 +33,7 @@ nnoremap k gk
 " toggle gundo
 nnoremap <leader>u :GundoToggle<CR>
 
-au BufNewFile,BufRead,BufWritePre *.py
+au BufNewFile,BufRead,BufWritePre *.py *.cpp
     \ set tabstop=4 |
     \ set softtabstop=4 |
     \ set shiftwidth=4 |
