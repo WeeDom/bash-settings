@@ -21,13 +21,21 @@ function add_agent() {
     ssh-add
 }
 
+function getktoken() {
+    echo $(kubectl -n msuk-dev describe secret $token | grep "^token" | awk '{split($0,a,":"); gsub(/ /,"",a[2]); print a[2]}')
+    if hash xclip 2>/dev/null; then
+        kubectl -n msuk-dev describe secret $token | grep "^token" | awk '{split($0,a,":"); gsub(/ /,"",a[2]); print a[2]}' | xclip
+    fi
+}
+
 export PATH=~/Library/Python/3.4/bin:~/.local/bin:$PATH
 alias go_bz_api="cd ~/PhpstormProjects/bluezone/api/web/modules/custom/bz_api/"
 alias sshproxy="ssh -A dominic.pain@35.177.40.241"
 alias sshbz="ssh -A 35.176.88.6"
 alias machine="docker-machine"
 alias http_here="python2.7 -m SimpleHTTPServer 10234"
+set completion-ignore-case On
 
-caps_to_escape
 # Run twolfson/sexy-bash-prompt
 . ~/sexy-bash-prompt/.bash_prompt
+source <(kubectl completion bash)
