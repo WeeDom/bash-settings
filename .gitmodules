@@ -19,3 +19,6 @@
 [submodule "vim/bundle/nerdcommenter"]
 	path = vim/bundle/nerdcommenter
 	url = https://github.com/scrooloose/nerdcommenter.git
+[submodule "vim/bundle/yaml-vim"]
+	path = vim/bundle/yaml-vim
+	url = git@github.com:mrk21/yaml-vim.git
