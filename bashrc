@@ -22,7 +22,7 @@ function add_agent() {
 }
 
 function getktoken() {
-    ktoken=$(kubectl -n msuk-dev describe secret $token | grep "^token" | awk '{split($0,a,":"); gsub(/ /,"",a[2]); print a[2]}')
+    ktoken=$( kubectl -n kube-system describe secret $(kubectl -n kube-system get secret | grep admin-user | awk '{print $1}') | grep "^token" | awk '{split($0,a,":"); gsub(/ /,"",a[2]); print a[2]}')
     echo $ktoken
     if hash xclip 2>/dev/null; then
         echo -n $ktoken | xclip -selection clipboard
