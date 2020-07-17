@@ -1,12 +1,12 @@
-# Git branch in prompt.
-
-caps_to_escape() {
+function caps_to_escape() {
 	setxkbmap -option caps:escape
 }
 #~/.ssh-find-agent -a || eval $(ssh-agent)
 set completion-ignore-case on
 test -f ~/.git-completion.bash && . $_
 test -f ~/.console/console.rc && . $_
+export BASH_SILENCE_DEPRECATION_WARNING=1
+#alias kubectl="microk8s.kubectl"
 
 function cdn() {
     cd $(printf "%0.s../" $(seq 1 $1 ));
@@ -30,11 +30,10 @@ function getktoken() {
 }
 
 export PATH=~/Library/Python/3.4/bin:~/.local/bin:$PATH
-alias go_bz_api="cd ~/PhpstormProjects/bluezone/api/web/modules/custom/bz_api/"
 alias sshproxy="ssh -A dominic.pain@35.177.40.241"
-alias sshbz="ssh -A 35.176.88.6"
 alias machine="docker-machine"
 alias http_here="python2.7 -m SimpleHTTPServer 10234"
+alias venv="source venv/bin/activate"
 set completion-ignore-case On
 
 # Run twolfson/sexy-bash-prompt

@@ -1,10 +1,8 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =8
-let g:netrw_dirhist_1='/home/dominic/miningsearchesuk/miningsearchesuk/src/python/web_editor_pagebreak/models'
-let g:netrw_dirhist_2='/home/dominic/miningsearchesuk/miningsearchesuk/src/python/web_editor_pagebreak/static'
-let g:netrw_dirhist_3='/home/dominic/miningsearchesuk/miningsearchesuk/src/python/web_editor_pagebreak'
-let g:netrw_dirhist_4='/home/dominic/miningsearchesuk/miningsearchesuk/src/python/web_editor_pagebreak/views'
-let g:netrw_dirhist_5='/home/dominic/miningsearchesuk/miningsearchesuk/src/python/web_editor_pagebreak/static/src'
-let g:netrw_dirhist_6='/home/dominic/miningsearchesuk/miningsearchesuk/src/python/web_editor_pagebreak/static'
-let g:netrw_dirhist_7='/home/dominic/miningsearchesuk/miningsearchesuk/src/python/web_editor_pagebreak'
-let g:netrw_dirhist_8='/home/dominic/miningsearchesuk/miningsearchesuk/src/python/web_editor_pagebreak/views'
+let g:netrw_dirhist_cnt =6
+let g:netrw_dirhist_1='/home/dominic/weedoms-django/app'
+let g:netrw_dirhist_2='/home/dominic/weedoms-django/app/weedoms_tut'
+let g:netrw_dirhist_3='/home/dominic/weedoms-django/app/weedoms_tut/weedoms_tut'
+let g:netrw_dirhist_4='/home/dominic/weedoms-django/app/weedoms_tut/weedoms_tut/settings'
+let g:netrw_dirhist_5='/home/dominic/weedoms-django/app/weedoms_tut/blog/templatetags/__pycache__'
+let g:netrw_dirhist_6='/home/dominic/weedoms-django/app/weedoms_tut/blog/templatetags'
