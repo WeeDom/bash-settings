@@ -15,7 +15,6 @@ export BASH_SILENCE_DEPRECATION_WARNING=1
 set completion-ignore-case on
 #export BASH_SILENCE_DEPRECATION_WARNING=1
 export PS1="\u@\[\033[0;94m\]localhost \w\[\033[32m\]\$(parse_git_branch)\[\033[00m\]\n$ "
->>>>>>> 865d04cdc38709bd1d5adc43769aa1f4050d6606
 test -f ~/.git-completion.bash && . $_
 test -f ~/.console/console.rc && . $_
 #export BASH_SILENCE_DEPRECATION_WARNING=1
