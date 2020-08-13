@@ -1,10 +1,16 @@
 function caps_to_escape() {
 	setxkbmap -option caps:escape
 }
+parse_git_branch() {
+
+    git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
+
+}
+
 #~/.ssh-find-agent -a || eval $(ssh-agent)
 set completion-ignore-case on
 export BASH_SILENCE_DEPRECATION_WARNING=1
-export PS1="\u@\[\033[0;94m\]flowmoco-odoo \w\[\033[32m\]\$(parse_git_branch)\[\033[00m\]\n$ "
+#export PS1="\u@\[\033[0;94m\]flowmoco-odoo \w\[\033[32m\]\$(parse_git_branch)\[\033[00m\]\n$ "
 test -f ~/.git-completion.bash && . $_
 test -f ~/.console/console.rc && . $_
 export BASH_SILENCE_DEPRECATION_WARNING=1
@@ -44,10 +50,6 @@ alias http_here="python2.7 -m SimpleHTTPServer 10234"
 alias venv="source venv/bin/activate"
 set completion-ignore-case On
 
-export PATH=/usr/local/lib/python3.7:$PATH
-
-
 # Run twolfson/sexy-bash-prompt
 . ~/.bash_prompt
 . ~/sexy-bash-prompt/.bash_prompt
-source <(kubectl completion bash)
