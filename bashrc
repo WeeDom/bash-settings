@@ -2,11 +2,18 @@ function caps_to_escape() {
 	setxkbmap -option caps:escape
 }
 parse_git_branch() {
-
     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
-
 }
-
+vmuuid() {
+    VBOXUUID=`VBoxManage list runningvms | awk -F"[{}]" '{ print $2 }'`
+    if [ -z $VBOXUUID ]; then
+        echo "No vm is running. You must have a single running VM for this script to work."
+       exit 1
+    else
+        export VBOXUUID=$VBOXUUID
+        echo $VBOXUUID
+    fi
+}
 set completion-ignore-case on
 export BASH_SILENCE_DEPRECATION_WARNING=1
 set completion-ignore-case on
