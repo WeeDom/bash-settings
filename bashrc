@@ -14,6 +14,10 @@ vmuuid() {
         echo $VBOXUUID
     fi
 }
+
+vbhelp() {
+    VBoxManage --help | less
+}
 set completion-ignore-case on
 export BASH_SILENCE_DEPRECATION_WARNING=1
 set completion-ignore-case on
