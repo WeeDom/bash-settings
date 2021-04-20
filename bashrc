@@ -7,18 +7,13 @@ parse_git_branch() {
 
 }
 
-#~/.ssh-find-agent -a || eval $(ssh-agent)
 set completion-ignore-case on
 export BASH_SILENCE_DEPRECATION_WARNING=1
-#export PS1="\u@\[\033[0;94m\]flowmoco-odoo \w\[\033[32m\]\$(parse_git_branch)\[\033[00m\]\n$ "
-##~/.ssh-find-agent -a || eval $(ssh-agent)
 set completion-ignore-case on
-#export BASH_SILENCE_DEPRECATION_WARNING=1
 export PS1="\u@\[\033[0;94m\]localhost \w\[\033[32m\]\$(parse_git_branch)\[\033[00m\]\n$ "
 test -f ~/.git-completion.bash && . $_
 test -f ~/.console/console.rc && . $_
-#export BASH_SILENCE_DEPRECATION_WARNING=1
-##alias kubectl="microk8s.kubectl"
+export PATH=$PATH:/usr/local/Cellar/openvpn/2.5.1/sbin
 
 function cdn() {
     cd $(printf "%0.s../" $(seq 1 $1 ));
@@ -53,3 +48,8 @@ set completion-ignore-case On
 
 # Run twolfson/sexy-bash-prompt
 . ~/sexy-bash-prompt/.bash_prompt
+alias vpn="sudo openvpn ~/Desktop/dominic.pain__ssl_vpn_config.ovpn"
+alias setup="cd /$HOME/Sites/core-local-scripts/scripts && ./setup.sh"
+alias start="cd /$HOME/Sites/core-local-scripts/scripts && ./start.sh"
+alias stop="cd /$HOME/Sites/core-local-scripts/scripts && ./stop.sh"
+alias blackfire-curl="cd /$HOME/Sites/core && docker-compose exec blackfire blackfire curl"
