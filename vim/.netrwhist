@@ -1,8 +1,3 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =6
-let g:netrw_dirhist_1='/home/dominic/weedoms-django/app'
-let g:netrw_dirhist_2='/home/dominic/weedoms-django/app/weedoms_tut'
-let g:netrw_dirhist_3='/home/dominic/weedoms-django/app/weedoms_tut/weedoms_tut'
-let g:netrw_dirhist_4='/home/dominic/weedoms-django/app/weedoms_tut/weedoms_tut/settings'
-let g:netrw_dirhist_5='/home/dominic/weedoms-django/app/weedoms_tut/blog/templatetags/__pycache__'
-let g:netrw_dirhist_6='/home/dominic/weedoms-django/app/weedoms_tut/blog/templatetags'
+let g:netrw_dirhistcnt =1
+let g:netrw_dirhist_1='/home/weedom/exercism/python/grade-school'
