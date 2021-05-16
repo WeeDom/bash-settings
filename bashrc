@@ -39,27 +39,11 @@ function add_agent() {
     ssh-add
 }
 
-#function start_odoo() {
-    #docker-compose run -p 9069:8069 msukstaging_odoo bash
-    #echo "odoo "$@" "${DB_ARGS[@]}" --dev=all --logfile=/var/log/odoo/odoo-server.log"
-    #echo "docker exec -it 329a2a3fe9a7 bash"
-    #docker-compose up -d msukstaging_db
-
-#function getktoken() {
-    #ktoken=$( kubectl -n kube-system describe secret $(kubectl -n kube-system get secret | grep admin-user | awk '{print $1}') | grep "^token" | awk '{split($0,a,":"); gsub(/ /,"",a[2]); print a[2]}')
-    #echo $ktoken
-    #if hash xclip 2>/dev/null; then
-        #echo -n $ktoken | xclip -selection clipboard
-    #fi
-#}
-
-#alias http_here="python2.7 -m SimpleHTTPServer 10234"
+alias http_here="python3.8 -m http.server 10234"
 alias venv="source venv/bin/activate"
-set completion-ignore-case On
 
-# Run twolfson/sexy-bash-prompt
 . ~/sexy-bash-prompt/.bash_prompt
-alias vpn="sudo openvpn ~/Desktop/dominic.pain__ssl_vpn_config.ovpn"
+alias vpn="cd; sudo openvpn --config ~/dominic.pain__ssl_vpn_config.ovpn"
 alias setup="cd /$HOME/Sites/core-local-scripts/scripts && ./setup.sh"
 alias start="cd /$HOME/Sites/core-local-scripts/scripts && ./start.sh"
 alias stop="cd /$HOME/Sites/core-local-scripts/scripts && ./stop.sh"
