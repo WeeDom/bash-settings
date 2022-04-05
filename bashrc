@@ -15,6 +15,15 @@ vmuuid() {
     fi
 }
 
+git_big_files() {
+    git rev-list --objects --all |
+        git cat-file --batch-check='%(objecttype) %(objectname) %(objectsize) %(rest)' |
+        sed -n 's/^blob //p' |
+        sort --numeric-sort --key=2 |
+        cut -c 1-12,41- |
+        $(command -v gnumfmt || echo numfmt) --field=2 --to=iec-i --suffix=B --padding=7 --round=nearest
+}
+
 vbhelp() {
     VBoxManage --help | less
 }
@@ -39,14 +48,40 @@ function add_agent() {
     ssh-add
 }
 
-alias http_here="python3.8 -m http.server 10234"
+function remove_spaces() {
+    for oldname in *
+    do
+        newname=`echo $oldname | sed -e 's/ /_/g'`
+        if [ "$newname" = "$oldname" ]
+        then
+            continue
+        fi
+        if [ -e "$newname" ]
+        then
+            echo Skipping "$oldname", because "$newname" exists
+        else
+            mv "$oldname" "$newname"
+        fi
+    done
+}
+
+alias http_here="python3 -m http.server 10234"
 alias venv="source venv/bin/activate"
 
 . ~/sexy-bash-prompt/.bash_prompt
-alias vpn="cd; sudo openvpn --config ~/dominic.pain__ssl_vpn_config.ovpn"
+alias vpn="sudo /usr/local/sbin/openvpn --config ~/dominic.pain__ssl_vpn_config.ovpn"
 alias setup="cd /$HOME/Sites/core-local-scripts/scripts && ./setup.sh"
 alias start="cd /$HOME/Sites/core-local-scripts/scripts && ./start.sh"
 alias stop="cd /$HOME/Sites/core-local-scripts/scripts && ./stop.sh"
 alias blackfire-curl="cd /$HOME/Sites/core && docker-compose exec blackfire blackfire curl"
 alias updatedb="sudo /usr/libexec/locate.updatedb"
 alias cdscripts="cd $HOME/Sites/core-local-scripts/scripts/"
+
+function sshvm() {
+    ssh $1@$(VBoxManage guestproperty get $2 /VirtualBox/GuestInfo/Net/0/V4/IP | sed 's/Value\: //')
+}
+
+function sshvm() {
+    ssh $1@$(VBoxManage guestproperty get $2 /VirtualBox/GuestInfo/Net/0/V4/IP | sed 's/Value\: //')
+}
+

@@ -1,3 +1,7 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =1
+let g:netrw_dirhistcnt =5
+let g:netrw_dirhist_5='/Users/admin/Sites/core/tests/postman'
+let g:netrw_dirhist_4='/Users/admin/Sites/core/tests'
+let g:netrw_dirhist_3='/Users/admin/Sites/core-local-scripts/scripts'
+let g:netrw_dirhist_2='/Users/admin/Sites/core-local-scripts'
 let g:netrw_dirhist_1='/home/weedom/exercism/python/grade-school'
