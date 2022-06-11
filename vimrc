@@ -25,7 +25,7 @@ set hidden              " keep undo history
 nnoremap <leader><space> :nohlsearch<CR>
 let python_highlight_all = 1
 
-let @d = 'i	import pdb; pdb.set_trace()'
+let @d = 'i	import pdb; pdb.set_trace() # noqa E702'
 " move vertically by visual line
 nnoremap j gj
 nnoremap k gk
