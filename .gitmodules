@@ -13,30 +13,9 @@
 [submodule "vim/bundle/bundle/autoclose"]
 	path = vim/bundle/bundle/autoclose
 	url = git://github.com/Townk/vim-autoclose.git
-[submodule "vim/bundle/nerdcommenter"]
-	path = vim/bundle/nerdcommenter
-	url = https://github.com/scrooloose/nerdcommenter.git
-[submodule "vim/bundle/yaml-vim"]
-	path = vim/bundle/yaml-vim
-	url = git@github.com:mrk21/yaml-vim.git
 [submodule "vim/bundle/bundle/fugitive"]
 	path = vim/bundle/bundle/fugitive
 	url = git://github.com/tpope/vim-fugitive.git
 [submodule "vim/bundle/bundle/nerdcommenter"]
 	path = vim/bundle/bundle/nerdcommenter
 	url = git://github.com/scrooloose/nerdcommenter.git
-[submodule "vim/bundle/bufexplorer"]
-	path = vim/bundle/bufexplorer
-	url = git://github.com/vim-scripts/bufexplorer.zip
-[submodule "vim/bundle/nerdtree"]
-	path = vim/bundle/nerdtree
-	url = git://github.com/scrooloose/nerdtree.git
-[submodule "vim/bundle/surround"]
-	path = vim/bundle/surround
-	url = git://github.com/tpope/vim-surround.git
-[submodule "vim/bundle/css3"]
-	path = vim/bundle/css3
-	url = git://github.com/hail2u/vim-css3-syntax.git
-[submodule "vim/bundle/fugitive"]
-	path = vim/bundle/fugitive
-	url = git://github.com/tpope/vim-fugitive.git
