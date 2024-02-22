@@ -1,18 +1,17 @@
+rebuild_full_stack() {
+    docker stop $(docker ps -a -q)
+    docker rmi -f $(docker image ls -q)
+    cd ~/dev/concrete5
+    docker build --no-cache .
+    docker compose --verbose up -d
+}
+
+
 function caps_to_escape() {
 	setxkbmap -option caps:escape
 }
 parse_git_branch() {
     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
-}
-vmuuid() {
-    VBOXUUID=`VBoxManage list runningvms | awk -F"[{}]" '{ print $2 }'`
-    if [ -z $VBOXUUID ]; then
-        echo "No vm is running. You must have a single running VM for this script to work."
-       exit 1
-    else
-        export VBOXUUID=$VBOXUUID
-        echo $VBOXUUID
-    fi
 }
 
 git_big_files() {
@@ -24,9 +23,6 @@ git_big_files() {
         $(command -v gnumfmt || echo numfmt) --field=2 --to=iec-i --suffix=B --padding=7 --round=nearest
 }
 
-vbhelp() {
-    VBoxManage --help | less
-}
 set completion-ignore-case on
 export BASH_SILENCE_DEPRECATION_WARNING=1
 set completion-ignore-case on
@@ -65,23 +61,14 @@ function remove_spaces() {
     done
 }
 
+. ~/sexy-bash-prompt/.bash_prompt
+
+alias vpn-up='sudo openconnect --user=dominic-pain vpn.rabbies.com'
 alias http_here="python3 -m http.server 10234"
 alias venv="source venv/bin/activate"
+alias sail='[ -f sail ] && sh sail || sh vendor/bin/sail'
+alias agents-cypress="cd ~/dev/agents-online-cypress; npx cypress open --config baseUrl=http://agents.local"
 
-. ~/sexy-bash-prompt/.bash_prompt
-alias vpn="sudo /usr/local/sbin/openvpn --config ~/dominic.pain__ssl_vpn_config.ovpn"
-alias setup="cd /$HOME/Sites/core-local-scripts/scripts && ./setup.sh"
-alias start="cd /$HOME/Sites/core-local-scripts/scripts && ./start.sh"
-alias stop="cd /$HOME/Sites/core-local-scripts/scripts && ./stop.sh"
-alias blackfire-curl="cd /$HOME/Sites/core && docker-compose exec blackfire blackfire curl"
-alias updatedb="sudo /usr/libexec/locate.updatedb"
-alias cdscripts="cd $HOME/Sites/core-local-scripts/scripts/"
-
-function sshvm() {
-    ssh $1@$(VBoxManage guestproperty get $2 /VirtualBox/GuestInfo/Net/0/V4/IP | sed 's/Value\: //')
-}
-
-function sshvm() {
-    ssh $1@$(VBoxManage guestproperty get $2 /VirtualBox/GuestInfo/Net/0/V4/IP | sed 's/Value\: //')
-}
-
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
