@@ -63,11 +63,9 @@ function remove_spaces() {
 
 . ~/sexy-bash-prompt/.bash_prompt
 
-alias vpn-up='sudo openconnect --user=dominic-pain vpn.rabbies.com'
 alias http_here="python3 -m http.server 10234"
 alias venv="source venv/bin/activate"
 alias sail='[ -f sail ] && sh sail || sh vendor/bin/sail'
-alias agents-cypress="cd ~/dev/agents-online-cypress; npx cypress open --config baseUrl=http://agents.local"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
