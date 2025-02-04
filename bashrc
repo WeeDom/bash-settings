@@ -75,18 +75,23 @@ activate_venv() {
     # Get the current working directory
     local current_dir=$(pwd)
 
-            # Check if the current directory starts with ~/ak-cakes
-            if [[ "$current_dir" == "$HOME/ak-cakes"* ]]; then
-                # Check if a virtual environment is already activated
-                if [[ -z "$VIRTUAL_ENV" ]]; then
-                    # Check if the virtual environment exists
-                    if [[ -d "$HOME/ak-cakes/venv" ]]; then
-                        source "$HOME/ak-cakes/venv/bin/activate"
-                    else
-                        echo "Virtual environment not found in ~/ak-cakes/venv"
-                    fi
-                fi
+    # Check if the current directory starts with ~/ak-cakes
+    if [[ "$current_dir" == "$HOME/ak-cakes"* ]]; then
+        # Check if a virtual environment is already activated
+        if [[ -z "$VIRTUAL_ENV" ]]; then
+            # Check if the virtual environment exists
+            if [[ -d "$HOME/ak-cakes/venv" ]]; then
+                source "$HOME/ak-cakes/venv/bin/activate"
+            else
+                echo "Virtual environment not found in ~/ak-cakes/venv"
             fi
+        fi
+    else
+        # Deactivate venv if active and we're outside ~/ak-cakes
+        if [[ -n "$VIRTUAL_ENV" ]]; then
+            deactivate
+        fi
+    fi
 }
 
 
@@ -95,7 +100,7 @@ alias venv="source venv/bin/activate"
 alias venvcheck="activate_venv"
 
 . ~/sexy-bash-prompt/.bash_prompt
-activate_venv
+export PROMPT_COMMAND=activate_venv
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
