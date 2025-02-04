@@ -1,15 +1,7 @@
-rebuild_full_stack() {
-    docker stop $(docker ps -a -q)
-    docker rmi -f $(docker image ls -q)
-    cd ~/dev/concrete5
-    docker build --no-cache .
-    docker compose --verbose up -d
-}
-
-
 function caps_to_escape() {
 	setxkbmap -option caps:escape
 }
+
 parse_git_branch() {
     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
 }
@@ -31,20 +23,20 @@ test -f ~/.git-completion.bash && . $_
 test -f ~/.console/console.rc && . $_
 export PATH=$PATH:/usr/local/Cellar/openvpn/2.5.1/sbin
 
-function cdn() {
+cdn() {
     cd $(printf "%0.s../" $(seq 1 $1 ));
 }
 
-function mkcd() {
+mkcd() {
     mkdir -p -- "$1" &&
       cd -P -- "$1"
 }
-function add_agent() {
+add_agent() {
     eval `ssh-agent`
     ssh-add
 }
 
-function remove_spaces() {
+remove_spaces() {
     for oldname in *
     do
         newname=`echo $oldname | sed -e 's/ /_/g'`
@@ -61,14 +53,49 @@ function remove_spaces() {
     done
 }
 
-. ~/sexy-bash-prompt/.bash_prompt
+laravel-clear-cache() {
+if [ -f artisan ]; then
+    echo "Clearing Laravel caches..."
+    php artisan cache:clear
+    php artisan config:clear
+    php artisan view:clear
+    php artisan route:clear
+    php artisan optimize:clear
+    echo "Rebuilding optimized files..."
+    php artisan config:cache
+    php artisan route:cache
+    echo "Done!"
+else
+    echo "artisan file not found. Please navigate to your Laravel project root."
+fi
+}
 
-alias vpn-up='sudo openconnect --user=dominic-pain vpn.rabbies.com'
+# check we're inside ~/ak-cakes and activate the venv if needed
+activate_venv() {
+    # Get the current working directory
+    local current_dir=$(pwd)
+
+            # Check if the current directory starts with ~/ak-cakes
+            if [[ "$current_dir" == "$HOME/ak-cakes"* ]]; then
+                # Check if a virtual environment is already activated
+                if [[ -z "$VIRTUAL_ENV" ]]; then
+                    # Check if the virtual environment exists
+                    if [[ -d "$HOME/ak-cakes/venv" ]]; then
+                        source "$HOME/ak-cakes/venv/bin/activate"
+                    else
+                        echo "Virtual environment not found in ~/ak-cakes/venv"
+                    fi
+                fi
+            fi
+}
+
+
 alias http_here="python3 -m http.server 10234"
 alias venv="source venv/bin/activate"
-alias sail='[ -f sail ] && sh sail || sh vendor/bin/sail'
-alias agents-cypress="cd ~/dev/agents-online-cypress; npx cypress open --config baseUrl=http://agents.local"
+alias venvcheck="activate_venv"
 
+. ~/sexy-bash-prompt/.bash_prompt
+activate_venv
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
