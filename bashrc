@@ -1,5 +1,10 @@
-function caps_to_escape() {
+caps_to_escape() {
 	setxkbmap -option caps:escape
+}
+
+setup_vim() {
+    cd ~/bash-settings
+    git submodule update --init --recursive
 }
 
 parse_git_branch() {
