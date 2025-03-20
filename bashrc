@@ -100,7 +100,6 @@ alias venv="source venv/bin/activate"
 alias venvcheck="activate_venv"
 
 . ~/sexy-bash-prompt/.bash_prompt
-export PROMPT_COMMAND=activate_venv
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
