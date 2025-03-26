@@ -1,0 +1,13 @@
+// Place your key bindings in this file to override the defaults
+[
+    {
+        "key": "capslock",
+        "command": "extension.vim_escape",
+        "when": "editorTextFocus && vim.mode != 'insert'"
+    },
+    {
+        "key": "capslock",
+        "command": "extension.vim_esc",
+        "when": "editorTextFocus && vim.mode == 'insert'"
+    }
+]

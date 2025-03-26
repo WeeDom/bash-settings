@@ -49,3 +49,6 @@
 [submodule "vim/bundle/vim-flake8"]
 	path = vim/bundle/vim-flake8
 	url = git@github.com:nvie/vim-flake8.git
+[submodule "vim/pack/github/copilot.vim"]
+	path = vim/pack/github/copilot.vim
+	url = git@github.com:github/copilot.vim.git
