@@ -36,34 +36,6 @@
             "after": ["<Esc>"]
         }
     ]
-	"vim.useSystemClipboard": true,
-	"vim.normalModeKeyBindingsNonRecursive": [
-		{
-			"before": ["y"],
-			"after": ["\"", "+", "y"]
-		},
-		{
-			"before": ["d"],
-			"after": ["\"", "+", "d"]
-		},
-		{
-			"before": ["x"],
-			"after": ["\"", "+", "x"]
-		}
-	],
-	"vim.visualModeKeyBindingsNonRecursive": [
-		{
-			"before": ["y"],
-			"after": ["\"", "+", "y"]
-		},
-		{
-			"before": ["d"],
-			"after": ["\"", "+", "d"]
-		},
-		{
-			"before": ["x"],
-			"after": ["\"", "+", "x"]
-		}
 ]
 
 }

@@ -19,19 +19,23 @@ set nocursorline          " highlight current line
 filetype indent on      " load filetype-specific indent files
 set wildmenu            " visual autocomplete for command menu
 set showmatch           " highlight matching [{()}]
-set paste               " always be ready to take CTRL/CMD+V
+set nopaste               " always be ready to take CTRL/CMD+V
+imap <C-p> <C-o>:set invpaste paste?<CR>
 set autoindent
 set hidden              " keep undo history
 nnoremap <leader><space> :nohlsearch<CR>
 let python_highlight_all = 1
-
 let @d = 'i	import pdb; pdb.set_trace() # noqa E702'
 " move vertically by visual line
 nnoremap j gj
 nnoremap k gk
 " toggle gundo
 nnoremap <leader>u :GundoToggle<CR>
+" Accept Copilot suggestion with Tab (optional)
+" imap <silent><script><expr> <Tab> copilot#Accept("\<CR>")
 
+" Accept Copilot suggestion with Ctrl+L
+imap <silent><script><expr> <C-l> copilot#Accept("\<CR>")
 
 au! BufNewFile,BufRead,BufWritePre *.feature
     \ set tabstop=2 |
