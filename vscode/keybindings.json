@@ -9,5 +9,19 @@
         "key": "capslock",
         "command": "extension.vim_esc",
         "when": "editorTextFocus && vim.mode == 'insert'"
-    }
+    },
+
+    {   "key": "ctrl+c",
+        "command": "editor.action.clipboardCopyAction",
+        "when": "textInputFocus && !terminalFocus" },
+    {
+        "key": "ctrl+v",
+        "command": "editor.action.clipboardPasteAction",
+        "when": "textInputFocus && !terminalFocus"
+    },
+    {
+        "key": "ctrl+x",
+        "command": "editor.action.clipboardCutAction",
+        "when": "textInputFocus && !terminalFocus"
+    },
 ]

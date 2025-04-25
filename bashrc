@@ -75,38 +75,36 @@ else
 fi
 }
 
-# check we're inside ~/ak-cakes and activate the venv if needed
-activate_venv() {
-    # Get the current working directory
-    local current_dir=$(pwd)
+function docker() {
+  if [[ "$1" == "volume" && "$2" == "prune" ]]; then
+    echo "⚠️  You're about to remove **unused** Docker volumes."
+    echo
+    echo "📦 These volumes will be deleted:"
+    docker volume ls -f dangling=true --format '{{.Name}}'
 
-    # Check if the current directory starts with ~/ak-cakes
-    if [[ "$current_dir" == "$HOME/ak-cakes"* ]]; then
-        # Check if a virtual environment is already activated
-        if [[ -z "$VIRTUAL_ENV" ]]; then
-            # Check if the virtual environment exists
-            if [[ -d "$HOME/ak-cakes/venv" ]]; then
-                source "$HOME/ak-cakes/venv/bin/activate"
-            else
-                echo "Virtual environment not found in ~/ak-cakes/venv"
-            fi
-        fi
+    echo
+    read -p "❓ Are you sure you want to proceed? (y/N): " confirm
+    if [[ "$confirm" =~ ^[Yy]$ ]]; then
+      command docker "$@"
     else
-        # Deactivate venv if active and we're outside ~/ak-cakes
-        if [[ -n "$VIRTUAL_ENV" ]]; then
-            deactivate
-        fi
+      echo "🛑 Aborted."
     fi
+    return
+  fi
+
+  command docker "$@"
 }
 
+alias docker-compose="export HOST_UID=$(id -u) && export HOST_GID=$(id -g) && docker-compose"
+alias dc="docker-compose"
 
 alias http_here="python3 -m http.server 10234"
 alias venv="source venv/bin/activate"
-
+export PROMPT_GIT_STATUS_COLOR=$(tput setaf 130)
+export PROMPT_PREPOSITION_COLOR=$(tput setaf 39)
 . ~/sexy-bash-prompt/.bash_prompt
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 export DOCKER_HOST=unix:///var/run/docker.sock
 
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
