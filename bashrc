@@ -23,7 +23,7 @@ git_big_files() {
 set completion-ignore-case on
 export BASH_SILENCE_DEPRECATION_WARNING=1
 set completion-ignore-case on
-export PS1="\u@\[\033[0;94m\]localhost \w\[\033[32m\]\$(parse_git_branch)\[\033[00m\]\n$ "
+export PS1="\u@\[\033[0;94m\]scaff \w\[\033[32m\]\$(parse_git_branch)\[\033[00m\]\n$ "
 test -f ~/.git-completion.bash && . $_
 test -f ~/.console/console.rc && . $_
 export PATH=$PATH:/usr/local/Cellar/openvpn/2.5.1/sbin
@@ -109,4 +109,4 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 export DOCKER_HOST=unix:///var/run/docker.sock
 
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+#eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
