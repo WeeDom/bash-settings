@@ -99,6 +99,8 @@ activate_venv() {
     fi
 }
 
+git config --global core.editor "vi"
+
 
 alias http_here="python3 -m http.server 10234"
 alias venv="source venv/bin/activate"
