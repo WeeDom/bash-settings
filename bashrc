@@ -100,7 +100,7 @@ alias docker-compose="export HOST_UID=$(id -u) && export HOST_GID=$(id -g) && do
 alias dc="docker-compose"
 
 alias http_here="python3 -m http.server 10234"
-alias venv="source venv/bin/activate"
+alias venv="source ~/venv/bin/activate"
 export PROMPT_GIT_STATUS_COLOR=$(tput setaf 130)
 export PROMPT_PREPOSITION_COLOR=$(tput setaf 39)
 . ~/sexy-bash-prompt/.bash_prompt
@@ -109,3 +109,9 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 export DOCKER_HOST=unix:///var/run/docker.sock
 
+# ~/.bashrc (SSH context visual prompt)
+
+# Only change prompt if you're SSH'd in
+if [ -n "$SSH_CONNECTION" ]; then
+  PS1="\[\e[41m\]\u@\h [REMOTE] \[\e[0m\]\w\$ "
+fi
