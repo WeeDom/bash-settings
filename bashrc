@@ -113,5 +113,5 @@ export DOCKER_HOST=unix:///var/run/docker.sock
 
 # Only change prompt if you're SSH'd in
 if [ -n "$SSH_CONNECTION" ]; then
-  PS1="\[\e[41m\]\u@\h [REMOTE] \[\e[0m\]\w\$ "
+  PS1="\[\e[41m\]\u@\h [REMOTE] \$(parse_git_branch) \[\e[0m\]\w\$ "
 fi
