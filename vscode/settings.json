@@ -36,5 +36,20 @@
             "after": ["<Esc>"]
         }
     ],
-    "workbench.startupEditor": "none"
+    "workbench.startupEditor": "none",
+    "gitlens.views.scm.grouped.views": {
+        "commits": false,
+        "branches": false,
+        "remotes": false,
+        "stashes": false,
+        "tags": false,
+        "worktrees": false,
+        "contributors": false,
+        "fileHistory": false,
+        "repositories": false,
+        "searchAndCompare": false,
+        "launchpad": false
+    },
+    "python.analysis.typeCheckingMode": "standard",
+    "vim.mouseSelectionGoesIntoVisualMode": false
 }

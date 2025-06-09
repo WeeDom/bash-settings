@@ -1,5 +1,16 @@
+set completion-ignore-case on
 caps_to_escape() {
 	setxkbmap -option caps:escape
+}
+
+clip() {
+  local cmd_output
+  cmd_output="$("$@" 2>&1)" || return 1
+  {
+    echo "$*"
+    echo "--------------------"
+    echo "$cmd_output"
+  } | tee >(wl-copy >/dev/null)
 }
 
 setup_vim() {
@@ -115,3 +126,5 @@ export DOCKER_HOST=unix:///var/run/docker.sock
 if [ -n "$SSH_CONNECTION" ]; then
   PS1="\[\e[41m\]\u@\h [REMOTE] \$(parse_git_branch) \[\e[0m\]\w\$ "
 fi
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
