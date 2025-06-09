@@ -49,3 +49,9 @@
 [submodule "vim/pack/github/copilot.vim"]
 	path = vim/pack/github/copilot.vim
 	url = git@github.com:github/copilot.vim.git
+[submodule "editorconfig-vim"]
+	path = editorconfig-vim
+	url = https://github.com/editorconfig/editorconfig-vim.git
+[submodule "vim/bundle/editorconfig-vim"]
+	path = vim/bundle/editorconfig-vim
+	url = https://github.com/editorconfig/editorconfig-vim.git
