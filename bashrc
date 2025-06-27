@@ -1,4 +1,47 @@
+## safety and env
+
 set completion-ignore-case on
+export BASH_SILENCE_DEPRECATION_WARNING=1
+export PATH=$PATH:/usr/local/Cellar/openvpn/2.5.1/sbin
+export PS1="\u@\[\033[0;94m\]scaff \w\[\033[32m\]\$(parse_git_branch)\[\033[00m\]\n$ "
+test -f ~/.git-completion.bash && . $_
+test -f ~/.console/console.rc && . $_
+export EDITOR=vim
+export VISUAL=vim
+export NVM_DIR="$HOME/.nvm"
+
+export PROMPT_GIT_STATUS_COLOR=$(tput setaf 130)
+export PROMPT_PREPOSITION_COLOR=$(tput setaf 39)
+. ~/sexy-bash-prompt/.bash_prompt
+git config --global core.editor "vi"
+
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+if ! pgrep ssh-agent > /dev/null; then
+    echo "Starting ssh-agent..."
+  eval $(ssh-agent -s)
+  ssh-add
+fi
+
+
+export DOCKER_HOST=unix:///var/run/docker.sock
+## make it obvious that we're not local
+if [ -n "$SSH_CONNECTION" ]; then
+  PS1="\[\e[41m\]\u@\h [REMOTE] \$(parse_git_branch) \[\e[0m\]\w\$ "
+fi
+
+#functions get defined here so they're declared earlier than the aliases
+dc() {
+  if [[ -n "$SSH_CONNECTION" ]]; then
+    echo "⚠️  Refusing to run docker compose with dev config in remote SSH session (SSH_CONNECTION detected)"
+    return 1
+  fi
+
+  echo docker compose -f ~/main/docker-compose.yml -f ~/main/docker-compose.dev.yml "$@"
+  docker compose -f ~/main/docker-compose.yml -f ~/main/docker-compose.dev.yml "$@"
+}
+
 caps_to_escape() {
 	setxkbmap -option caps:escape
 }
@@ -31,14 +74,6 @@ git_big_files() {
         $(command -v gnumfmt || echo numfmt) --field=2 --to=iec-i --suffix=B --padding=7 --round=nearest
 }
 
-set completion-ignore-case on
-export BASH_SILENCE_DEPRECATION_WARNING=1
-set completion-ignore-case on
-export PS1="\u@\[\033[0;94m\]scaff \w\[\033[32m\]\$(parse_git_branch)\[\033[00m\]\n$ "
-test -f ~/.git-completion.bash && . $_
-test -f ~/.console/console.rc && . $_
-export PATH=$PATH:/usr/local/Cellar/openvpn/2.5.1/sbin
-
 cdn() {
     cd $(printf "%0.s../" $(seq 1 $1 ));
 }
@@ -47,6 +82,7 @@ mkcd() {
     mkdir -p -- "$1" &&
       cd -P -- "$1"
 }
+
 add_agent() {
     eval `ssh-agent`
     ssh-add
@@ -86,45 +122,13 @@ else
 fi
 }
 
-function docker() {
-  if [[ "$1" == "volume" && "$2" == "prune" ]]; then
-    echo "⚠️  You're about to remove **unused** Docker volumes."
-    echo
-    echo "📦 These volumes will be deleted:"
-    docker volume ls -f dangling=true --format '{{.Name}}'
-
-    echo
-    read -p "❓ Are you sure you want to proceed? (y/N): " confirm
-    if [[ "$confirm" =~ ^[Yy]$ ]]; then
-      command docker "$@"
-    else
-      echo "🛑 Aborted."
-    fi
-    return
-  fi
-
-  command docker "$@"
-}
-
-git config --global core.editor "vi"
-alias docker-compose="export HOST_UID=$(id -u) && export HOST_GID=$(id -g) && docker-compose"
-alias dc="docker-compose"
-
+## aliases go here
 alias http_here="python3 -m http.server 10234"
 alias venv="source ~/venv/bin/activate"
-export PROMPT_GIT_STATUS_COLOR=$(tput setaf 130)
-export PROMPT_PREPOSITION_COLOR=$(tput setaf 39)
-. ~/sexy-bash-prompt/.bash_prompt
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-export DOCKER_HOST=unix:///var/run/docker.sock
+alias psqlx='docker compose exec db psql -U scaffadmin -d scaffsmart -x'
+
 
 # ~/.bashrc (SSH context visual prompt)
 
-# Only change prompt if you're SSH'd in
-if [ -n "$SSH_CONNECTION" ]; then
-  PS1="\[\e[41m\]\u@\h [REMOTE] \$(parse_git_branch) \[\e[0m\]\w\$ "
-fi
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
