@@ -38,8 +38,10 @@ dc() {
     return 1
   fi
 
-  echo docker compose -f ~/main/docker-compose.yml -f ~/main/docker-compose.dev.yml "$@"
-  docker compose -f ~/main/docker-compose.yml -f ~/main/docker-compose.dev.yml "$@"
+  CMD="docker compose -f ~/main/docker-compose.full-dev.yml"
+
+  echo "running $CMD"
+  eval $CMD "$@"
 }
 
 caps_to_escape() {
