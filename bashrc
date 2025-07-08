@@ -15,15 +15,6 @@ export PROMPT_PREPOSITION_COLOR=$(tput setaf 39)
 . ~/sexy-bash-prompt/.bash_prompt
 git config --global core.editor "vi"
 
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-if ! pgrep ssh-agent > /dev/null; then
-    echo "Starting ssh-agent..."
-  eval $(ssh-agent -s)
-  ssh-add
-fi
-
 
 export DOCKER_HOST=unix:///var/run/docker.sock
 ## make it obvious that we're not local
@@ -133,4 +124,4 @@ alias psqlx='docker compose exec db psql -U scaffadmin -d scaffsmart -x'
 # ~/.bashrc (SSH context visual prompt)
 
 
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+#[ -f ~/.fzf.bash ] && source ~/.fzf.bash
