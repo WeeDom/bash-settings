@@ -15,13 +15,25 @@ export PROMPT_PREPOSITION_COLOR=$(tput setaf 39)
 . ~/sexy-bash-prompt/.bash_prompt
 git config --global core.editor "vi"
 
-
 export DOCKER_HOST=unix:///var/run/docker.sock
 ## make it obvious that we're not local
 if [ -n "$SSH_CONNECTION" ]; then
   PS1="\[\e[41m\]\u@\h [REMOTE] \$(parse_git_branch) \[\e[0m\]\w\$ "
 fi
-
+# fzf trickery
+#
+# install it, if it's available.
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+# function to open the search pane, using batcat (cat on steroids)
+fzf_open_with_preview() {
+  local file
+  file=$(fzf --tmux --preview 'batcat --style=numbers --color=always --line-range=:300 {}' ) && code "$file"
+}
+# bind it to CTRL+F
+bind -x '"\C-f": fzf_open_with_preview'
+#
+#
+#
 #functions get defined here so they're declared earlier than the aliases
 dc() {
   if [[ -n "$SSH_CONNECTION" ]]; then
@@ -31,7 +43,7 @@ dc() {
 
   CMD="docker compose -f ~/main/docker-compose.full-dev.yml"
 
-  echo "running $CMD"
+  echo "running $CMD $@"
   eval $CMD "$@"
 }
 
@@ -120,8 +132,3 @@ alias http_here="python3 -m http.server 10234"
 alias venv="source ~/venv/bin/activate"
 alias psqlx='docker compose exec db psql -U scaffadmin -d scaffsmart -x'
 
-
-# ~/.bashrc (SSH context visual prompt)
-
-
-#[ -f ~/.fzf.bash ] && source ~/.fzf.bash
