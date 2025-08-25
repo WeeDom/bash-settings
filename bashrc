@@ -24,13 +24,31 @@ fi
 #
 # install it, if it's available.
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+[ -f ~/bin/docker_complete.sh ] && source ~/bin/docker_complete.sh
 # function to open the search pane, using batcat (cat on steroids)
 fzf_open_with_preview() {
   local file
   file=$(fzf --tmux --preview 'batcat --style=numbers --color=always --line-range=:300 {}' ) && code "$file"
 }
 # bind it to CTRL+F
-bind -x '"\C-f": fzf_open_with_preview'
+bind -x '"\C-f": fzgrep'
+fzgrep() {
+  local selected file line
+
+  selected=$(rg --no-heading --line-number "${*:-.}" \
+    | fzf --ansi \
+    	  --tmux \
+          --delimiter : \
+          --preview 'batcat --style=numbers --color=always --highlight-line {2} {1}' \
+          --preview-window=up:60%)
+
+  [ -z "$selected" ] && return 1
+
+  file=$(cut -d: -f1 <<< "$selected")
+  line=$(cut -d: -f2 <<< "$selected")
+
+  code -g "$file:$line"
+}
 #
 #
 #
@@ -126,6 +144,11 @@ else
     echo "artisan file not found. Please navigate to your Laravel project root."
 fi
 }
+
+docker_mem() {
+    ~/bin/docker_mem.sh
+}
+
 
 ## aliases go here
 alias http_here="python3 -m http.server 10234"
