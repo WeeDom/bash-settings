@@ -12,16 +12,18 @@ export NVM_DIR="$HOME/.nvm"
 
 export PROMPT_GIT_STATUS_COLOR=$(tput setaf 130)
 export PROMPT_PREPOSITION_COLOR=$(tput setaf 39)
-. ~/sexy-bash-prompt/.bash_prompt
+
+if [ -f /etc/this-is-smp-production ]; then
+    export PS1="\[\e[41m\]\u (PROD)\[\e[0m\] in\$(parse_git_branch)\[\033[00m\] \w $ "
+elif [ -f /etc/this-is-smp-staging ]; then
+    export PS1="\[\e[43m\]\u (STAGING)\[\e[0m\] in\$(parse_git_branch)\[\033[00m\] \w $ "
+else
+    . ~/sexy-bash-prompt/.bash_prompt
+fi
+
 git config --global core.editor "vi"
 
 export DOCKER_HOST=unix:///var/run/docker.sock
-## make it obvious that we're not local
-if [ -n "$SSH_CONNECTION" ]; then
-  PS1="\[\e[41m\]\u@\h [REMOTE] \$(parse_git_branch) \[\e[0m\]\w\$ "
-fi
-# fzf trickery
-#
 # install it, if it's available.
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 [ -f ~/bin/docker_complete.sh ] && source ~/bin/docker_complete.sh
@@ -161,19 +163,4 @@ alias http_here="python3 -m http.server 10234"
 alias venv="source ~/venv/bin/activate"
 alias psqlx='docker compose exec db psql -U scaffadmin -d scaffsmart -x'
 
-
-# Detect environment marker and update tmux symlink
-if [ -f /etc/this-is-smp-production ]; then
-    echo "switching to production tmux config"
-    ln -sf ~/bash-settings/tmux-prod.conf ~/bash-settings/tmux.conf
-elif [ -f /etc/this-is-smp-staging ]; then
-    echo "switching to staging tmux config"
-    ln -sf ~/bash-settings/tmux-staging.conf ~/bash-settings/tmux.conf
-fi
-# Detect environment marker and update prompt
-if [ -f /etc/this-is-smp-production ]; then
-    export PS1="\[\e[41m\]\u@\h (PROD)\[\e[0m\] \w $ "
-elif [ -f /etc/this-is-smp-staging ]; then
-    export PS1="\[\e[43m\]\u@\h (STAGING)\[\e[0m\] \w $ "
-fi
 
