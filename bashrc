@@ -164,8 +164,10 @@ alias psqlx='docker compose exec db psql -U scaffadmin -d scaffsmart -x'
 
 # Detect environment marker and update tmux symlink
 if [ -f /etc/this-is-smp-production ]; then
+    echo "switching to production tmux config"
     ln -sf ~/bash-settings/tmux-prod.conf ~/bash-settings/tmux.conf
 elif [ -f /etc/this-is-smp-staging ]; then
+    echo "switching to staging tmux config"
     ln -sf ~/bash-settings/tmux-staging.conf ~/bash-settings/tmux.conf
 fi
 # Detect environment marker and update prompt
