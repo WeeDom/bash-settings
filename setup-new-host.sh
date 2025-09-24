@@ -11,8 +11,8 @@ echo "git config --global core.editor 'vim'"
 git config --global core.editor 'vim'
 echo "git config --global user.name 'Dominic Pain'"
 git config --global user.name 'Dominic Pain'
-echo "git config --global user.email 'dominic@flowmo.co'"
-git config --global user.email 'dominic@flowmo.co'
+echo "git config --global user.email 'dominic_pain@hotmail.com'"
+git config --global user.email 'dominic_pain@hotmail.com'
 echo "rm .bashrc"
 rm .bashrc
 echo "ln -s bash-settings/bashrc .bashrc"
