@@ -162,3 +162,16 @@ alias venv="source ~/venv/bin/activate"
 alias psqlx='docker compose exec db psql -U scaffadmin -d scaffsmart -x'
 
 
+# Detect environment marker and update tmux symlink
+if [ -f /etc/this-is-smp-production ]; then
+    ln -sf ~/bash-settings/tmux-prod.conf ~/bash-settings/tmux.conf
+elif [ -f /etc/this-is-smp-staging ]; then
+    ln -sf ~/bash-settings/tmux-staging.conf ~/bash-settings/tmux.conf
+fi
+# Detect environment marker and update prompt
+if [ -f /etc/this-is-smp-production ]; then
+    export PS1="\[\e[41m\]\u@\h (PROD)\[\e[0m\] \w $ "
+elif [ -f /etc/this-is-smp-staging ]; then
+    export PS1="\[\e[43m\]\u@\h (STAGING)\[\e[0m\] \w $ "
+fi
+
