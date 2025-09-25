@@ -158,6 +158,16 @@ gdrive_mount() {
 gdrive_umount() {
     fusermount -u ~/gdrive
 }
+
+# Update vim plugin submodules
+update-vim-plugins() {
+  echo "📦 Updating Vim plugins..."
+  cd ~/bash-settings || return
+  git pull --recurse-submodules
+  git submodule foreach 'branch=$(git rev-parse --abbrev-ref HEAD); git checkout $branch && git pull'
+  echo "✅ Vim plugins updated."
+}
+
 ## aliases go here
 alias http_here="python3 -m http.server 10234"
 alias venv="source ~/venv/bin/activate"
