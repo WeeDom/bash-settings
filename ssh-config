@@ -1,18 +1,25 @@
-Host scaffsmartpro.com
-  HostName scaffsmartpro.com
+Host scaff-prod
+  HostName www.scaffsmartpro.com
   User weedom
   ForwardAgent yes
   RequestTTY yes
 
-Host scaff-aws
-  HostName scaff-aws
+Host scaff-staging
+  HostName staging.scaffsmartpro.com
   User weedom
   ForwardAgent yes
   RequestTTY yes
   # No RemoteCommand here
 
-Host scaff-aws-tmux
-  HostName scaff-aws
+Host scaff-staging-tmux
+  HostName staging.scaffsmartpro.com
+  User weedom
+  ForwardAgent yes
+  RequestTTY yes
+  RemoteCommand sh -c '[ -t 1 ] && export TERM=xterm-256color && cd ~/main 2>/dev/null && exec tmux new-session -A -s main || exec bash'
+
+Host scaff-prod-tmux
+  HostName www.scaffsmartpro.com
   User weedom
   ForwardAgent yes
   RequestTTY yes
