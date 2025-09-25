@@ -1,0 +1,10 @@
+[/]
+background-color='#FFFFFF'
+foreground-color='#24292E'
+palette=['#24292E', '#D73A49', '#22863A', '#DBAB09', '#0366D6', '#6F42C1', '#1B7C83', '#D1D5DA', '#586069', '#F97583', '#85E89D', '#FFEA7F', '#79B8FF', '#B392F0', '#39C5CF', '#F6F8FA']
+bold-color='#24292E'
+cursor-background-color='#24292E'
+cursor-foreground-color='#FFFFFF'
+use-theme-colors=false
+use-bold-color=true
+use-theme-transparency=false
