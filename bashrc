@@ -32,8 +32,8 @@ fzf_open_with_preview() {
   local file
   file=$(fzf --tmux --preview 'batcat --style=numbers --color=always --line-range=:300 {}' ) && code "$file"
 }
-# bind it to CTRL+F
-bind -x '"\C-f": fzgrep'
+# bind it to CTRL+F (only in interactive shells)
+[[ $- == *i* ]] && bind -x '"\C-f": fzgrep'
 fzgrep() {
   local selected file line
 
@@ -152,7 +152,7 @@ docker_mem() {
 }
 
 gdrive_mount() {
-    rclone mount "WeeDom GDrive": ~/gdrive --vfs-cache-mode writes &
+    rclone mount "WeeDomGDrive": ~/gdrive --vfs-cache-mode writes &
 }
 
 gdrive_umount() {
