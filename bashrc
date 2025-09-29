@@ -14,9 +14,13 @@ export PROMPT_GIT_STATUS_COLOR=$(tput setaf 130)
 export PROMPT_PREPOSITION_COLOR=$(tput setaf 39)
 
 if [ -f /etc/this-is-smp-production ]; then
-    export PS1="\[\e[41m\]\u (PROD)\[\e[0m\] in\$(parse_git_branch)\[\033[00m\] \w $ "
+    export PS1="\[\e[41m\]\u (SMP PROD)\[\e[0m\] in\$(parse_git_branch)\[\033[00m\] \w $ "
 elif [ -f /etc/this-is-smp-staging ]; then
-    export PS1="\[\e[43m\]\u (STAGING)\[\e[0m\] in\$(parse_git_branch)\[\033[00m\] \w $ "
+    export PS1="\[\e[43m\]\u (SMP STAGING)\[\e[0m\] in\$(parse_git_branch)\[\033[00m\] \w $ "
+elif [ -f /etc/this-is-guardeloo-production ]; then
+    export PS1="\[\e[41m\]\u (GEL PROD)\[\e[0m\] in\$(parse_git_branch)\[\033[00m\] \w $ "
+elif [ -f /etc/this-is-guardeloo-staging ]; then
+    export PS1="\[\e[43m\]\u (GEL STAGING)\[\e[0m\] in\$(parse_git_branch)\[\033[00m\] \w $ "
 else
     . ~/sexy-bash-prompt/.bash_prompt
 fi
