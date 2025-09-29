@@ -174,3 +174,4 @@ alias venv="source ~/venv/bin/activate"
 alias psqlx='docker compose exec db psql -U scaffadmin -d scaffsmart -x'
 
 
+export PATH="/home/weedom/.local/bin:$PATH"
