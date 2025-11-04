@@ -3,12 +3,14 @@ Host scaff-prod
   User weedom
   ForwardAgent yes
   RequestTTY yes
+  RemoteCommand sh -c 'cd ~/main/ 2>/dev/null && exec bash'
 
 Host scaff-staging
   HostName staging.scaffsmartpro.com
   User weedom
   ForwardAgent yes
   RequestTTY yes
+  RemoteCommand sh -c 'cd ~/main/ 2>/dev/null && exec bash'
 
 Host scaff-staging-tmux
   HostName staging.scaffsmartpro.com
@@ -29,12 +31,14 @@ Host gel-prod
   User weedom
   ForwardAgent yes
   RequestTTY yes
+  RemoteCommand sh -c 'cd ~/toilet/ 2>/dev/null && exec bash'
 
 Host gel-staging
   HostName staging.guard-e-loo.co.uk
   User weedom
   ForwardAgent yes
   RequestTTY yes
+  RemoteCommand sh -c 'cd ~/toilet/ 2>/dev/null && exec bash'
 
 Host gel-staging-tmux
   HostName staging.guard-e-loo.co.uk
