@@ -7,12 +7,14 @@ Host scaff-prod
   User weedom
   ForwardAgent yes
   RequestTTY yes
+  RemoteCommand sh -c 'cd ~/main/ 2>/dev/null && exec bash'
 
 Host scaff-staging
   HostName staging.scaffsmartpro.com
   User weedom
   ForwardAgent yes
   RequestTTY yes
+  RemoteCommand sh -c 'cd ~/main/ 2>/dev/null && exec bash'
 
 Host scaff-staging-tmux
   HostName staging.scaffsmartpro.com
@@ -33,12 +35,14 @@ Host gel-prod
   User weedom
   ForwardAgent yes
   RequestTTY yes
+  RemoteCommand sh -c 'cd ~/toilet/ 2>/dev/null && exec bash'
 
 Host gel-staging
   HostName staging.guard-e-loo.co.uk
   User weedom
   ForwardAgent yes
   RequestTTY yes
+  RemoteCommand sh -c 'cd ~/toilet/ 2>/dev/null && exec bash'
 
 Host gel-staging-tmux
   HostName staging.guard-e-loo.co.uk
@@ -53,4 +57,31 @@ Host gel-prod-tmux
   ForwardAgent yes
   RequestTTY yes
   RemoteCommand sh -c '[ -t 1 ] && export TERM=xterm-256color && cd ~/toilet 2>/dev/null; exec tmux new-session -A -s main || exec bash'
+
+Host gel-prod
+  HostName guard-e-loo.co.uk
+  User weedom
+  ForwardAgent yes
+  RequestTTY yes
+
+Host gel-staging
+  HostName staging.guard-e-loo.co.uk
+  User weedom
+  ForwardAgent yes
+  RequestTTY yes
+  # No RemoteCommand here
+
+Host gel-staging-tmux
+  HostName staging.guard-e-loo.co.uk
+  User weedom
+  ForwardAgent yes
+  RequestTTY yes
+  RemoteCommand sh -c '[ -t 1 ] && export TERM=xterm-256color && cd ~/main 2>/dev/null && exec tmux new-session -A -s main || exec bash'
+
+Host gel-prod-tmux
+  HostName guard-e-loo.co.uk
+  User weedom
+  ForwardAgent yes
+  RequestTTY yes
+  RemoteCommand sh -c '[ -t 1 ] && export TERM=xterm-256color && cd ~/main 2>/dev/null && exec tmux new-session -A -s main || exec bash'
 
