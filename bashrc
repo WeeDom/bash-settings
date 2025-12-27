@@ -21,6 +21,10 @@ elif [ -f /etc/this-is-guardeloo-production ]; then
     export PS1="\[\e[41m\]\u (GEL PROD)\[\e[0m\] in\$(parse_git_branch)\[\033[00m\] \w $ "
 elif [ -f /etc/this-is-guardeloo-staging ]; then
     export PS1="\[\e[43m\]\u (GEL STAGING)\[\e[0m\] in\$(parse_git_branch)\[\033[00m\] \w $ "
+elif [ -f /etc/this-is-gnst-staging ]; then
+    export PS1="\[\e[43m\]\u (GNST STAGING)\[\e[0m\] in\$(parse_git_branch)\[\033[00m\] \w $ "
+elif [ -f /etc/this-is-gnst-production ]; then
+    export PS1="\[\e[43m\]\u (GNST PROD)\[\e[0m\] in\$(parse_git_branch)\[\033[00m\] \w $ "
 else
     . ~/sexy-bash-prompt/.bash_prompt
 fi
