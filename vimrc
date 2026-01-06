@@ -59,8 +59,5 @@ au! BufNewFile,BufRead,BufWritePre *
 " remove trailing whitespace
 autocmd BufWritePre * %s/\s\+$//e
 
-highlight OverLength ctermbg=red ctermfg=white guibg=#592929
-match OverLength /\%81v.\+/
-
 autocmd BufWritePost *.py call flake8#Flake8()
 
