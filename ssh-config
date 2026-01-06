@@ -62,7 +62,6 @@ Host gel-prod
   User weedom
   ForwardAgent yes
   RequestTTY yes
->>>>>>> a18176a (add new host to ssh aliases. Ignore some noise)
 
 Host gel-staging
   HostName staging.guard-e-loo.co.uk
