@@ -1,9 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =7
-let g:netrw_dirhist_7='/home/weedom/toilet/ansible/playbooks/templates'
-let g:netrw_dirhist_6='/home/weedom/dev/uat-intranet'
-let g:netrw_dirhist_5='/Users/admin/Sites/core/tests/postman'
-let g:netrw_dirhist_4='/Users/admin/Sites/core/tests'
-let g:netrw_dirhist_3='/Users/admin/Sites/core-local-scripts/scripts'
-let g:netrw_dirhist_2='/Users/admin/Sites/core-local-scripts'
-let g:netrw_dirhist_1='/home/weedom/exercism/python/grade-school'
