@@ -41,6 +41,34 @@ Host gel-staging
   User weedom
   ForwardAgent yes
   RequestTTY yes
+  RemoteCommand sh -c 'cd ~/toilet/ 2>/dev/null && exec bash'
+
+Host gel-staging-tmux
+  HostName staging.guard-e-loo.co.uk
+  User weedom
+  ForwardAgent yes
+  RequestTTY yes
+  RemoteCommand sh -c '[ -t 1 ] && export TERM=xterm-256color && cd ~/toilet 2>/dev/null; exec tmux new-session -A -s main || exec bash'
+
+Host gel-prod-tmux
+  HostName guard-e-loo.co.uk
+  User weedom
+  ForwardAgent yes
+  RequestTTY yes
+  RemoteCommand sh -c '[ -t 1 ] && export TERM=xterm-256color && cd ~/toilet 2>/dev/null; exec tmux new-session -A -s main || exec bash'
+
+Host gel-prod
+  HostName guard-e-loo.co.uk
+  User weedom
+  ForwardAgent yes
+  RequestTTY yes
+>>>>>>> a18176a (add new host to ssh aliases. Ignore some noise)
+
+Host gel-staging
+  HostName staging.guard-e-loo.co.uk
+  User weedom
+  ForwardAgent yes
+  RequestTTY yes
   # No RemoteCommand here
 
 Host gel-staging-tmux
@@ -62,3 +90,29 @@ Host pi1
     User weedom
     ForwardAgent yes
     RequestTTY yes
+
+Host gnst-staging-tmux
+  HostName ssh-staging.gonnaenosaythat.co.uk
+  User weedom
+  ForwardAgent yes
+  RequestTTY yes
+  RemoteCommand sh -c '[ -t 1 ] && export TERM=xterm-256color && exec tmux new-session -A -s main || exec bash'
+
+Host gnst-staging
+  HostName ssh-staging.gonnaenosaythat.co.uk
+  User weedom
+  ForwardAgent yes
+  RequestTTY yes
+
+Host gnst-prod-tmux
+  HostName ssh.gonnaenosaythat.co.uk
+  User weedom
+  ForwardAgent yes
+  RequestTTY yes
+  RemoteCommand sh -c '[ -t 1 ] && export TERM=xterm-256color && exec tmux new-session -A -s main || exec bash'
+
+Host gnst-prod
+  HostName ssh.gonnaenosaythat.co.uk
+  User weedom
+  ForwardAgent yes
+  RequestTTY yes
