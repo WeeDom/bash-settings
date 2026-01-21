@@ -57,6 +57,34 @@ Host gel-prod-tmux
   RequestTTY yes
   RemoteCommand sh -c '[ -t 1 ] && export TERM=xterm-256color && cd ~/main 2>/dev/null && exec tmux new-session -A -s main || exec bash'
 
+Host gnst-prod
+  HostName ssh.gonnaenosaythat.co.uk
+  User weedom
+  ForwardAgent yes
+  RequestTTY yes
+  # No RemoteCommand here
+
+Host gnst-prod-tmux
+  HostName ssh.gonnaenosaythat.co.uk
+  User weedom
+  ForwardAgent yes
+  RequestTTY yes
+  RemoteCommand sh -c '[ -t 1 ] && export TERM=xterm-256color && exec tmux new-session -A -s main || exec bash'
+
+Host gnst-staging
+  HostName ssh-staging.gonnaenosaythat.co.uk
+  User weedom
+  ForwardAgent yes
+  RequestTTY yes
+  # No RemoteCommand here
+
+Host gnst-staging-tmux
+  HostName ssh-staging.gonnaenosaythat.co.uk
+  User weedom
+  ForwardAgent yes
+  RequestTTY yes
+  RemoteCommand sh -c '[ -t 1 ] && export TERM=xterm-256color && exec tmux new-session -A -s main || exec bash'
+
 Host pi1
     Hostname pi1
     User weedom
