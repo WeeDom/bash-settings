@@ -3,7 +3,6 @@
 set completion-ignore-case on
 export BASH_SILENCE_DEPRECATION_WARNING=1
 export PATH=$PATH:/usr/local/Cellar/openvpn/2.5.1/sbin
-export PS1="\u@\[\033[0;94m\]scaff \w\[\033[32m\]\$(parse_git_branch)\[\033[00m\]\n$ "
 test -f ~/.git-completion.bash && . $_
 test -f ~/.console/console.rc && . $_
 export EDITOR=vim
