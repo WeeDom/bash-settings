@@ -1,6 +1,7 @@
 Host *
     ServerAliveInterval 30
     ServerAliveCountMax 4
+    ForwardAgent yes
 
 Host scaff-prod
   HostName www.scaffsmartpro.com
@@ -31,31 +32,31 @@ Host scaff-prod-tmux
   RemoteCommand sh -c '[ -t 1 ] && export TERM=xterm-256color && cd ~/main 2>/dev/null; exec tmux new-session -A -s main || exec bash'
 
 Host gel-prod
-  HostName guard-e-loo.co.uk
+  HostName ssh.guard-e-loo.co.uk
   User weedom
   ForwardAgent yes
   RequestTTY yes
 
 Host gel-staging
-  HostName staging.guard-e-loo.co.uk
+  HostName ssh-staging.guard-e-loo.co.uk
   User weedom
   ForwardAgent yes
   RequestTTY yes
   # No RemoteCommand here
 
 Host gel-staging-tmux
-  HostName staging.guard-e-loo.co.uk
+  HostName ssh-staging.guard-e-loo.co.uk
   User weedom
   ForwardAgent yes
   RequestTTY yes
-  RemoteCommand sh -c '[ -t 1 ] && export TERM=xterm-256color && cd ~/main 2>/dev/null && exec tmux new-session -A -s main || exec bash'
+  RemoteCommand sh -c '[ -t 1 ] && export TERM=xterm-256color && exec tmux new-session -A -s main || exec bash'
 
 Host gel-prod-tmux
   HostName guard-e-loo.co.uk
   User weedom
   ForwardAgent yes
   RequestTTY yes
-  RemoteCommand sh -c '[ -t 1 ] && export TERM=xterm-256color && cd ~/main 2>/dev/null && exec tmux new-session -A -s main || exec bash'
+  RemoteCommand sh -c '[ -t 1 ] && export TERM=xterm-256color && exec tmux new-session -A -s main || exec bash'
 
 Host gnst-prod
   HostName ssh.gonnaenosaythat.co.uk
