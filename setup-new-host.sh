@@ -11,6 +11,10 @@ echo "set up git correctly"
 echo "cd ~"
 cd ~
 
+echo "git clone git@github.com:twolfson/sexy-bash-prompt.git"
+git clone git@github.com:twolfson/sexy-bash-prompt.git
+echo "git clone git@github.com:junegunn/fzf.git"
+git clone git@github.com:junegunn/fzf.git
 echo "git config --global core.editor 'vim'"
 git config --global core.editor 'vim'
 echo "git config --global user.name 'Dominic Pain'"
@@ -57,3 +61,11 @@ if [ ! -d "${HOME}/fzf" ]; then
 fi
 
 echo "Symlinks created and dependencies cloned."
+echo "sudo apt-get -y install tmux tree vim exuberant-ctags"
+sudo apt-get -y install tmux tree vim exuberant-ctags
+echo "rm .tmux.conf"
+rm .tmux.conf
+echo "ln -s bash-settings/tmux.conf .tmux.conf"
+ln -s bash-settings/tmux.conf .tmux.conf
+echo "sudo apt -y autoremove"
+sudo apt -y autoremove
