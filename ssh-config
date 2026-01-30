@@ -51,14 +51,14 @@ Host gel-staging-tmux
   RemoteCommand sh -c '[ -t 1 ] && export TERM=xterm-256color && cd ~/toilet 2>/dev/null; exec tmux new-session -A -s main || exec bash'
 
 Host gel-prod-tmux
-  HostName ssh-prod.guard-e-loo.co.uk
+  HostName ssh.guard-e-loo.co.uk
   User weedom
   ForwardAgent yes
   RequestTTY yes
   RemoteCommand sh -c '[ -t 1 ] && export TERM=xterm-256color && cd ~/toilet 2>/dev/null; exec tmux new-session -A -s main || exec bash'
 
 Host gel-prod
-  HostName guard-e-loo.co.uk
+  HostName ssh.guard-e-loo.co.uk
   User weedom
   ForwardAgent yes
   RequestTTY yes
