@@ -177,7 +177,7 @@ update-vim-plugins() {
 
 ## aliases go here
 alias http_here="python3 -m http.server 10234"
-alias venv="source ~/venv/bin/activate"
+alias venv="source venv/bin/activate"
 alias psqlx='docker compose exec db psql -U scaffadmin -d scaffsmart -x'
 
 
