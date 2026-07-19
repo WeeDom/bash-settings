@@ -38,7 +38,7 @@ export DOCKER_HOST=unix:///var/run/docker.sock
 # function to open the search pane, using batcat (cat on steroids)
 fzf_open_with_preview() {
   local file
-  file=$(fzf --tmux --preview 'batcat --style=numbers --color=always --line-range=:300 {}' ) && code "$file"
+  file=$(fzf --tmux --preview 'batcat --style=numbers --color=always --line-range=:300 {}' ) && code --disable-gpu "$file"
 }
 # bind it to CTRL+F (only in interactive shells)
 [[ $- == *i* ]] && bind -x '"\C-f": fzgrep'
@@ -69,7 +69,7 @@ dc() {
     return 1
   fi
 
-  CMD="docker compose -f ~/main/docker-compose.full-dev.yml"
+  CMD="docker compose -f ~/gonnaenosaythat/docker-compose-dev.yml"
 
   echo "running $CMD $@"
   eval $CMD "$@"
@@ -176,9 +176,13 @@ update-vim-plugins() {
   echo "✅ Vim plugins updated."
 }
 
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init - bash)"
+
 ## aliases go here
 alias http_here="python3 -m http.server 10234"
-alias venv="source ~/venv/bin/activate"
+alias venv="source venv/bin/activate"
 alias psqlx='docker compose exec db psql -U scaffadmin -d scaffsmart -x'
 
 
