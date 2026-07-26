@@ -1,4 +1,5 @@
 execute pathogen#infect()
+set runtimepath+=/home/weedom/bash-settings/vim/vim-flake8
 
 filetype plugin on
 let g:ycm_confirm_extra_conf = 0
@@ -43,7 +44,6 @@ au! BufNewFile,BufRead,BufWritePre *.feature
     \ set shiftwidth=2 |
     \ set textwidth=79 |
     \ set expandtab |
-    \ set autoindent |
     \ set fileformat=unix |
 " remove trailing whitespace
 autocmd BufWritePre *.feature %s/\s\+$//e
@@ -54,7 +54,6 @@ au! BufNewFile,BufRead,BufWritePre *
     \ set shiftwidth=4 |
     \ set textwidth=79 |
     \ set expandtab |
-    \ set autoindent |
     \ set fileformat=unix |
 " remove trailing whitespace
 autocmd BufWritePre * %s/\s\+$//e
