@@ -1,12 +1,17 @@
 execute pathogen#infect()
-set runtimepath+=/home/weedom/bash-settings/vim/vim-flake8
+" vim-flake8 now loads from bundle/ via pathogen; nerdcommenter has no bundle/ copy
+set runtimepath+=/home/weedom/bash-settings/vim/nerdcommenter
+let g:NERDSpaceDelims = 1        " add a space after comment delimiters
+let g:NERDDefaultAlign = 'left'  " align delimiters flush left
+" these ship with a trailing space built in, which doubles up with NERDSpaceDelims
+let g:NERDCustomDelimiters = {'python': {'left': '#'}, 'sql': {'left': '--'}}
 
 filetype plugin on
 let g:ycm_confirm_extra_conf = 0
 let g:ycm_server_python_interpreter = '/usr/bin/python3'
 set directory=$HOME/.vim/swap/
 runtime macros/matchit.vim
-filetype plugin indent on
+" filetype plugin indent on
 syntax on
 set rnu number
 autocmd FileType * setlocal shiftwidth=4 expandtab
@@ -17,12 +22,10 @@ set softtabstop=4   " number of spaces in tab when editing
 set shiftwidth=4
 set showcmd             " show command in bottom bar
 set nocursorline          " highlight current line
-filetype indent on      " load filetype-specific indent files
 set wildmenu            " visual autocomplete for command menu
 set showmatch           " highlight matching [{()}]
 set nopaste               " always be ready to take CTRL/CMD+V
 imap <C-p> <C-o>:set invpaste paste?<CR>
-set autoindent
 set hidden              " keep undo history
 nnoremap <leader><space> :nohlsearch<CR>
 let python_highlight_all = 1
@@ -38,21 +41,10 @@ nnoremap <leader>u :GundoToggle<CR>
 " Accept Copilot suggestion with Ctrl+L
 imap <silent><script><expr> <C-l> copilot#Accept("\<CR>")
 
-au! BufNewFile,BufRead,BufWritePre *.feature
-    \ set tabstop=2 |
-    \ set softtabstop=2 |
-    \ set shiftwidth=2 |
-    \ set textwidth=79 |
-    \ set expandtab |
-    \ set fileformat=unix |
-" remove trailing whitespace
-autocmd BufWritePre *.feature %s/\s\+$//e
-
 au! BufNewFile,BufRead,BufWritePre *
     \ set tabstop=4 |
     \ set softtabstop=4 |
     \ set shiftwidth=4 |
-    \ set textwidth=79 |
     \ set expandtab |
     \ set fileformat=unix |
 " remove trailing whitespace
