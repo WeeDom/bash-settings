@@ -1,3 +1,5 @@
 vim/swap
 *.swp
 vim/.netrwhist
+# Generated Vim help tags
+vim/**/doc/tags
