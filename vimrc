@@ -37,24 +37,12 @@ nnoremap <leader>u :GundoToggle<CR>
 " Accept Copilot suggestion with Ctrl+L
 imap <silent><script><expr> <C-l> copilot#Accept("\<CR>")
 
-au! BufNewFile,BufRead,BufWritePre *.feature
-    \ set tabstop=2 |
-    \ set softtabstop=2 |
-    \ set shiftwidth=2 |
-    \ set textwidth=79 |
-    \ set expandtab |
-    \ set autoindent |
-    \ set fileformat=unix |
-" remove trailing whitespace
-autocmd BufWritePre *.feature %s/\s\+$//e
-
-au! BufNewFile,BufRead,BufWritePre *
+au! BufNewFile,BufWritePre *
     \ set tabstop=4 |
     \ set softtabstop=4 |
     \ set shiftwidth=4 |
     \ set textwidth=79 |
     \ set expandtab |
-    \ set autoindent |
     \ set fileformat=unix |
 " remove trailing whitespace
 autocmd BufWritePre * %s/\s\+$//e
