@@ -4,6 +4,38 @@ To make rclone work, copy `rclone.conf` to `~/.config/rclone/` — this is what 
 
 ---
 
+## Neovim
+
+`setup-new-host.sh` handles the whole thing, so on a new machine:
+
+```bash
+git clone <this repo> ~/bash-settings
+cd ~/bash-settings && git submodule update --init   # vim/nvim plugins
+./setup-new-host.sh
+```
+
+What it sets up:
+
+| Thing | Where |
+|---|---|
+| nvim binary | `~/.local/opt/nvim-<version>/`, symlinked to `~/.local/bin/nvim` |
+| config | `~/.config/nvim` → `bash-settings/nvim` |
+| plugins | reused from `bash-settings/vim/` (pathogen bundles + `pack/`) |
+| pynvim (python3 provider, needed by YouCompleteMe) | `~/.local/opt/nvim-venv/` |
+
+**There is only one config.** `nvim/init.lua` adds `vim/` to the runtimepath and
+then sources `vimrc`, so vim and nvim share settings, keymaps and plugins — edit
+`vimrc` and both change. Anything nvim-only goes at the bottom of `nvim/init.lua`.
+
+Neovim comes from the official tarball rather than apt, because Ubuntu ships a
+version several releases behind. To upgrade, bump `NVIM_VERSION` in
+`setup-new-host.sh` and re-run it (it is idempotent, and old versions stay in
+`~/.local/opt` so you can roll back by re-pointing the symlink).
+
+Sanity check after install: `nvim --version` and `nvim +checkhealth`.
+
+---
+
 ## Setting up GitHub Light Terminal Profile (GNOME Terminal)
 
 You can import a GitHub Light colour scheme for GNOME Terminal to make it easier to visually distinguish environments (e.g. staging).

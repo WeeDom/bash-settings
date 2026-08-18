@@ -1,6 +1,8 @@
 execute pathogen#infect()
 " vim-flake8 now loads from bundle/ via pathogen; nerdcommenter has no bundle/ copy
-set runtimepath+=/home/weedom/bash-settings/vim/nerdcommenter
+" path is derived from this file's location so it works from nvim and on any $HOME
+" resolve() because ~/.vimrc is a symlink into the repo
+execute 'set runtimepath+=' . fnamemodify(resolve(expand('<script>:p')), ':h') . '/vim/nerdcommenter'
 let g:NERDSpaceDelims = 1        " add a space after comment delimiters
 let g:NERDDefaultAlign = 'left'  " align delimiters flush left
 " these ship with a trailing space built in, which doubles up with NERDSpaceDelims
