@@ -30,6 +30,22 @@ vim.cmd.source(repo .. '/vimrc')
 
 -- nvim-only overrides ------------------------------------------------------
 
+-- nvim ships a default colorscheme that paints Normal with its own blue-grey
+-- background; vim leaves Normal cleared so the terminal's background shows
+-- through. The bundled 'vim' colorscheme restores the legacy behaviour, so
+-- both editors sit on the terminal background. background=light mirrors what
+-- vim picks by default -- without it nvim may guess 'dark' and hand the vim
+-- scheme a different (unreadable on a light terminal) syntax palette.
+vim.opt.background = 'light'
+vim.cmd.colorscheme('vim')
+
 -- vimrc points 'directory' at ~/.vim/swap, which vim is already using. Give
 -- nvim its own so editing the same file in both doesn't trip swap warnings.
 vim.opt.directory = vim.fn.stdpath('state') .. '/swap//'
+vim.lsp.config('pyright', {
+    cmd = { 'pyright-langserver', '--stdio' },
+    filetypes = { 'python' },
+    root_markers = { 'pyproject.toml', '.git' },
+})
+
+vim.lsp.enable('pyright')
