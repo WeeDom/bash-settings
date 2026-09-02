@@ -13,8 +13,8 @@ echo "git config --global user.name 'Dominic Pain'"
 git config --global user.name 'Dominic Pain'
 echo "git config --global user.email 'dominic_pain@hotmail.com'"
 git config --global user.email 'dominic_pain@hotmail.com'
-echo "sudo apt-get update"
-sudo apt-get update
+echo "sudo apt-get update --allow-releaseinfo-change"
+sudo apt-get update --allow-releaseinfo-change
 echo "sudo apt-get -y install ripgrep tmux tree"
 # curl + python3-venv are needed by the neovim install below
 sudo apt-get -y install tmux ripgrep tree vim exuberant-ctags curl python3-venv
