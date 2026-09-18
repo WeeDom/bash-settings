@@ -1,3 +1,5 @@
 vim/swap
 *.swp
 vim/.netrwhist
+.env
+venv
