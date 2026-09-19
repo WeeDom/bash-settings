@@ -9,10 +9,16 @@ from dotenv import find_dotenv, load_dotenv
 def nmcli(*args: str) -> str:
     result = subprocess.run(
         ["nmcli", *args],
-        check=True,
         capture_output=True,
         text=True,
     )
+
+    if result.returncode:
+        raise SystemExit(
+            f"nmcli {' '.join(args)} failed ({result.returncode}): "
+            f"{result.stderr.strip() or result.stdout.strip()}"
+        )
+
     return result.stdout.strip()
 
 
